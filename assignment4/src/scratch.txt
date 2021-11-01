@@ -1,0 +1,125 @@
+//ahmadwali zadron
+// update procedure (updated name from mark to alex).
+
+mysql> delimiter //
+mysql> create procedure updateEmployee()
+    -> begin
+    -> update employee set name = 'alex' where empId = 515212;
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from employee;
+    -> //
++--------+-------+
+| empId  | name  |
++--------+-------+
+|  15151 | john  |
+|  21211 | smith |
+| 515212 | mark  |
++--------+-------+
+3 rows in set (0.01 sec)
+
+mysql> call updateEmployee();
+
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from employee;
++--------+-------+
+| empId  | name  |
++--------+-------+
+|  15151 | john  |
+|  21211 | smith |
+| 515212 | alex  |
++--------+-------+
+3 rows in set (0.00 sec)
+
+// insert procedure
+
+mysql> delimiter //
+mysql> create procedure insertEmployee()
+    -> begin
+    -> insert into employee values (45, 'luck');
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call insertEmployee();
+    -> //
+ERROR 1062 (23000): Duplicate entry '45' for key 'employee.PRIMARY'
+mysql> select * from employee;
+    -> //
++--------+-------+
+| empId  | name  |
++--------+-------+
+|     45 | luck  |
+|  15151 | john  |
+|  21211 | smith |
+| 515212 | alex  |
++--------+-------+
+4 rows in set (0.00 sec)
+
+// delete procedure
+
+mysql> delimiter //
+mysql> create procedure deleteEmployee()
+    -> begin
+    -> delete from employee where empId = 45;
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call deleteEmployee();
+    -> //
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
+    -> //
++--------+-------+
+| empId  | name  |
++--------+-------+
+|  15151 | john  |
+|  21211 | smith |
+| 515212 | alex  |
++--------+-------+
+3 rows in set (0.00 sec)
+
+// get all procedure
+
+mysql> delimiter //
+mysql> create procedure getallEmployee()
+    -> begin
+    -> select * from employee;
+    -> end //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call getallEmployee();
+    -> //
++--------+-------+
+| empId  | name  |
++--------+-------+
+|  15151 | john  |
+|  21211 | smith |
+| 515212 | alex  |
++--------+-------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+get by id procedure
+
+mysql> delimiter //
+mysql> create procedure getByIdEmployee()
+    -> begin
+    -> select * from employee where empId = 21211;
+    -> end//
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call getByIdEmployee();
+    -> //
++-------+-------+
+| empId | name  |
++-------+-------+
+| 21211 | smith |
++-------+-------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
